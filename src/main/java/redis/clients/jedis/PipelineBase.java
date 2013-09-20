@@ -754,48 +754,48 @@ abstract class PipelineBase extends Queable implements
         return getResponse(BuilderFactory.BYTE_ARRAY_ZSET);
     }
 
-    public Response<Set<Tuple>> zrangeByScoreWithScores(String key, double min,
+    public Response<List<Tuple>> zrangeByScoreWithScores(String key, double min,
                                                         double max) {
         getClient(key).zrangeByScoreWithScores(key, min, max);
         return getResponse(BuilderFactory.TUPLE_ZSET);
     }
     
-	public Response<Set<Tuple>> zrangeByScoreWithScores(String key, String min,
+	public Response<List<Tuple>> zrangeByScoreWithScores(String key, String min,
 			                                            String max) {
 		getClient(key).zrangeByScoreWithScores(key, min, max);
 		return getResponse(BuilderFactory.TUPLE_ZSET);
 	}
 
-    public Response<Set<Tuple>> zrangeByScoreWithScores(byte[] key, double min,
+    public Response<List<Tuple>> zrangeByScoreWithScores(byte[] key, double min,
                                                         double max) {
         return zrangeByScoreWithScores(key, toByteArray(min), toByteArray(max));
     }
 
-    public Response<Set<Tuple>> zrangeByScoreWithScores(byte[] key, byte[] min,
+    public Response<List<Tuple>> zrangeByScoreWithScores(byte[] key, byte[] min,
                                                         byte[] max) {
         getClient(key).zrangeByScoreWithScores(key, min, max);
         return getResponse(BuilderFactory.TUPLE_ZSET_BINARY);
     }
 
-    public Response<Set<Tuple>> zrangeByScoreWithScores(String key, double min,
+    public Response<List<Tuple>> zrangeByScoreWithScores(String key, double min,
                                                         double max, int offset, int count) {
         getClient(key).zrangeByScoreWithScores(key, min, max, offset, count);
         return getResponse(BuilderFactory.TUPLE_ZSET);
     }
     
-    public Response<Set<Tuple>> zrangeByScoreWithScores(String key, String min,
+    public Response<List<Tuple>> zrangeByScoreWithScores(String key, String min,
                                                         String max, int offset, int count) {
     	getClient(key).zrangeByScoreWithScores(key, min, max, offset, count);
     	return getResponse(BuilderFactory.TUPLE_ZSET);
     }
 
-    public Response<Set<Tuple>> zrangeByScoreWithScores(byte[] key, double min,
+    public Response<List<Tuple>> zrangeByScoreWithScores(byte[] key, double min,
                                                         double max, int offset, int count) {
         getClient(key).zrangeByScoreWithScores(key, toByteArray(min), toByteArray(max), offset, count);
         return getResponse(BuilderFactory.TUPLE_ZSET_BINARY);
     }
 
-    public Response<Set<Tuple>> zrangeByScoreWithScores(byte[] key, byte[] min,
+    public Response<List<Tuple>> zrangeByScoreWithScores(byte[] key, byte[] min,
                                                         byte[] max, int offset, int count) {
         getClient(key).zrangeByScoreWithScores(key, min, max, offset, count);
         return getResponse(BuilderFactory.TUPLE_ZSET_BINARY);
@@ -849,60 +849,60 @@ abstract class PipelineBase extends Queable implements
         return getResponse(BuilderFactory.BYTE_ARRAY_ZSET);
     }
 
-    public Response<Set<Tuple>> zrevrangeByScoreWithScores(String key,
+    public Response<List<Tuple>> zrevrangeByScoreWithScores(String key,
                                                            double max, double min) {
         getClient(key).zrevrangeByScoreWithScores(key, max, min);
         return getResponse(BuilderFactory.TUPLE_ZSET);
     }
     
-    public Response<Set<Tuple>> zrevrangeByScoreWithScores(String key,
+    public Response<List<Tuple>> zrevrangeByScoreWithScores(String key,
                                                            String max, String min) {
     	getClient(key).zrevrangeByScoreWithScores(key, max, min);
     	return getResponse(BuilderFactory.TUPLE_ZSET);
     }
 
-    public Response<Set<Tuple>> zrevrangeByScoreWithScores(byte[] key,
+    public Response<List<Tuple>> zrevrangeByScoreWithScores(byte[] key,
                                                            double max, double min) {
         getClient(key).zrevrangeByScoreWithScores(key, toByteArray(max), toByteArray(min));
         return getResponse(BuilderFactory.TUPLE_ZSET_BINARY);
     }
 
-    public Response<Set<Tuple>> zrevrangeByScoreWithScores(byte[] key,
+    public Response<List<Tuple>> zrevrangeByScoreWithScores(byte[] key,
                                                            byte[] max, byte[] min) {
         getClient(key).zrevrangeByScoreWithScores(key, max, min);
         return getResponse(BuilderFactory.TUPLE_ZSET_BINARY);
     }
 
-    public Response<Set<Tuple>> zrevrangeByScoreWithScores(String key,
+    public Response<List<Tuple>> zrevrangeByScoreWithScores(String key,
                                                            double max, double min, int offset, int count) {
         getClient(key).zrevrangeByScoreWithScores(key, max, min, offset, count);
         return getResponse(BuilderFactory.TUPLE_ZSET);
     }
     
-    public Response<Set<Tuple>> zrevrangeByScoreWithScores(String key,
+    public Response<List<Tuple>> zrevrangeByScoreWithScores(String key,
             											   String max, String min, int offset, int count) {
     	getClient(key).zrevrangeByScoreWithScores(key, max, min, offset, count);
 	return getResponse(BuilderFactory.TUPLE_ZSET);
 	}
 
-    public Response<Set<Tuple>> zrevrangeByScoreWithScores(byte[] key,
+    public Response<List<Tuple>> zrevrangeByScoreWithScores(byte[] key,
                                                            double max, double min, int offset, int count) {
         getClient(key).zrevrangeByScoreWithScores(key, toByteArray(max), toByteArray(min), offset, count);
         return getResponse(BuilderFactory.TUPLE_ZSET_BINARY);
     }
 
-    public Response<Set<Tuple>> zrevrangeByScoreWithScores(byte[] key,
+    public Response<List<Tuple>> zrevrangeByScoreWithScores(byte[] key,
                                                            byte[] max, byte[] min, int offset, int count) {
         getClient(key).zrevrangeByScoreWithScores(key, max, min, offset, count);
         return getResponse(BuilderFactory.TUPLE_ZSET_BINARY);
     }
 
-    public Response<Set<Tuple>> zrangeWithScores(String key, long start, long end) {
+    public Response<List<Tuple>> zrangeWithScores(String key, long start, long end) {
         getClient(key).zrangeWithScores(key, start, end);
         return getResponse(BuilderFactory.TUPLE_ZSET);
     }
 
-    public Response<Set<Tuple>> zrangeWithScores(byte[] key, long start, long end) {
+    public Response<List<Tuple>> zrangeWithScores(byte[] key, long start, long end) {
         getClient(key).zrangeWithScores(key, start, end);
         return getResponse(BuilderFactory.TUPLE_ZSET_BINARY);
     }
@@ -967,13 +967,13 @@ abstract class PipelineBase extends Queable implements
         return getResponse(BuilderFactory.BYTE_ARRAY_ZSET);
     }
 
-    public Response<Set<Tuple>> zrevrangeWithScores(String key, long start,
+    public Response<List<Tuple>> zrevrangeWithScores(String key, long start,
                                                     long end) {
         getClient(key).zrevrangeWithScores(key, start, end);
         return getResponse(BuilderFactory.TUPLE_ZSET);
     }
 
-    public Response<Set<Tuple>> zrevrangeWithScores(byte[] key, long start,
+    public Response<List<Tuple>> zrevrangeWithScores(byte[] key, long start,
                                                     long end) {
         getClient(key).zrevrangeWithScores(key, start, end);
         return getResponse(BuilderFactory.TUPLE_ZSET);

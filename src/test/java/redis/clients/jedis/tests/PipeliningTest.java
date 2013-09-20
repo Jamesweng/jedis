@@ -69,7 +69,7 @@ public class PipeliningTest extends Assert {
         Response<Map<String, String>> hgetAll = p.hgetAll("hash");
         p.sadd("set", "foo");
         Response<Set<String>> smembers = p.smembers("set");
-        Response<Set<Tuple>> zrangeWithScores = p.zrangeWithScores("zset", 0,
+        Response<List<Tuple>> zrangeWithScores = p.zrangeWithScores("zset", 0,
                 -1);
         p.sync();
 

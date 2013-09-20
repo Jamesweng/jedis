@@ -129,9 +129,9 @@ public interface
 
     Set<String> zrevrange(String key, long start, long end);
 
-    Set<Tuple> zrangeWithScores(String key, long start, long end);
+    List<Tuple> zrangeWithScores(String key, long start, long end);
 
-    Set<Tuple> zrevrangeWithScores(String key, long start, long end);
+    List<Tuple> zrevrangeWithScores(String key, long start, long end);
 
     Long zcard(String key);
 
@@ -162,27 +162,27 @@ public interface
     Set<String> zrevrangeByScore(String key, double max, double min,
             int offset, int count);
 
-    Set<Tuple> zrangeByScoreWithScores(String key, double min, double max);
+    List<Tuple> zrangeByScoreWithScores(String key, double min, double max);
 
-    Set<Tuple> zrevrangeByScoreWithScores(String key, double max, double min);
+    List<Tuple> zrevrangeByScoreWithScores(String key, double max, double min);
 
-    Set<Tuple> zrangeByScoreWithScores(String key, double min, double max,
+    List<Tuple> zrangeByScoreWithScores(String key, double min, double max,
             int offset, int count);
     
     Set<String> zrevrangeByScore(String key, String max, String min,
             int offset, int count);
 
-    Set<Tuple> zrangeByScoreWithScores(String key, String min, String max);
+    List<Tuple> zrangeByScoreWithScores(String key, String min, String max);
     
-    Set<Tuple> zrevrangeByScoreWithScores(String key, String max, String min);
+    List<Tuple> zrevrangeByScoreWithScores(String key, String max, String min);
 
-    Set<Tuple> zrangeByScoreWithScores(String key, String min, String max,
+    List<Tuple> zrangeByScoreWithScores(String key, String min, String max,
             int offset, int count);
 
-    Set<Tuple> zrevrangeByScoreWithScores(String key, double max, double min,
+    List<Tuple> zrevrangeByScoreWithScores(String key, double max, double min,
             int offset, int count);
     
-    Set<Tuple> zrevrangeByScoreWithScores(String key, String max, String min,
+    List<Tuple> zrevrangeByScoreWithScores(String key, String max, String min,
             int offset, int count);
 
     Long zremrangeByRank(String key, long start, long end);

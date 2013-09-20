@@ -1628,20 +1628,20 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
 	return new LinkedHashSet<byte[]>(members);
     }
 
-    public Set<Tuple> zrangeWithScores(final byte[] key, final long start,
+    public List<Tuple> zrangeWithScores(final byte[] key, final long start,
 	    final long end) {
 	checkIsInMulti();
 	client.zrangeWithScores(key, start, end);
-	Set<Tuple> set = getBinaryTupledSet();
-	return set;
+	List<Tuple> list = getBinaryTupledList();
+	return list;
     }
 
-    public Set<Tuple> zrevrangeWithScores(final byte[] key, final long start,
+    public List<Tuple> zrevrangeWithScores(final byte[] key, final long start,
 	    final long end) {
 	checkIsInMulti();
 	client.zrevrangeWithScores(key, start, end);
-	Set<Tuple> set = getBinaryTupledSet();
-	return set;
+	List<Tuple> list = getBinaryTupledList();
+	return list;
     }
 
     /**
@@ -2327,17 +2327,17 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
      * @return Multi bulk reply specifically a list of elements in the specified
      *         score range.
      */
-    public Set<Tuple> zrangeByScoreWithScores(final byte[] key,
+    public List<Tuple> zrangeByScoreWithScores(final byte[] key,
 	    final double min, final double max) {
 	return zrangeByScoreWithScores(key, toByteArray(min), toByteArray(max));
     }
     
-    public Set<Tuple> zrangeByScoreWithScores(final byte[] key,
+    public List<Tuple> zrangeByScoreWithScores(final byte[] key,
     	    final byte[] min, final byte[] max) {
     	checkIsInMulti();
     	client.zrangeByScoreWithScores(key, min, max);
-    	Set<Tuple> set = getBinaryTupledSet();
-    	return set;
+    	List<Tuple> list = getBinaryTupledList();
+    	return list;
         }
 
     /**
@@ -2396,21 +2396,33 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
      * @return Multi bulk reply specifically a list of elements in the specified
      *         score range.
      */
-    public Set<Tuple> zrangeByScoreWithScores(final byte[] key,
+    public List<Tuple> zrangeByScoreWithScores(final byte[] key,
 	    final double min, final double max, final int offset,
 	    final int count) {
 	return zrangeByScoreWithScores(key, toByteArray(min), toByteArray(max), offset, count);
     }
     
-    public Set<Tuple> zrangeByScoreWithScores(final byte[] key,
+    public List<Tuple> zrangeByScoreWithScores(final byte[] key,
     	    final byte[] min, final byte[] max, final int offset,
     	    final int count) {
     	checkIsInMulti();
     	client.zrangeByScoreWithScores(key, min, max, offset, count);
-    	Set<Tuple> set = getBinaryTupledSet();
-    	return set;
+    	List<Tuple> list = getBinaryTupledList();
+    	return list;
         }
 
+	private List<Tuple> getBinaryTupledList() {
+		checkIsInMulti();
+		List<byte[]> membersWithScores = client.getBinaryMultiBulkReply();
+		List<Tuple> list = new ArrayList<Tuple>(membersWithScores.size());
+		Iterator<byte[]> iterator = membersWithScores.iterator();
+		while (iterator.hasNext()) {
+			list.add(new Tuple(iterator.next(), Double.parseDouble(SafeEncoder
+					.encode(iterator.next()))));
+		}
+		return list;
+	}
+    
     private Set<Tuple> getBinaryTupledSet() {
 	checkIsInMulti();
 	List<byte[]> membersWithScores = client.getBinaryMultiBulkReply();
@@ -2447,32 +2459,32 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
     	return new LinkedHashSet<byte[]>(client.getBinaryMultiBulkReply());
         }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(final byte[] key,
+    public List<Tuple> zrevrangeByScoreWithScores(final byte[] key,
 	    final double max, final double min) {
 	return zrevrangeByScoreWithScores(key, toByteArray(max), toByteArray(min));
     }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(final byte[] key,
+    public List<Tuple> zrevrangeByScoreWithScores(final byte[] key,
 	    final double max, final double min, final int offset,
 	    final int count) {
     	return zrevrangeByScoreWithScores(key, toByteArray(max), toByteArray(min), offset, count);
     }
     
-    public Set<Tuple> zrevrangeByScoreWithScores(final byte[] key,
+    public List<Tuple> zrevrangeByScoreWithScores(final byte[] key,
     	    final byte[] max, final byte[] min) {
 	checkIsInMulti();
 	client.zrevrangeByScoreWithScores(key, max, min);
-	Set<Tuple> set = getBinaryTupledSet();
-	return set;
+	List<Tuple> list = getBinaryTupledList();
+	return list;
     }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(final byte[] key,
+    public List<Tuple> zrevrangeByScoreWithScores(final byte[] key,
 	    final byte[] max, final byte[] min, final int offset,
 	    final int count) {
 	checkIsInMulti();
 	client.zrevrangeByScoreWithScores(key, max, min, offset, count);
-	Set<Tuple> set = getBinaryTupledSet();
-	return set;
+	List<Tuple> list = getBinaryTupledList();
+	return list;
     }    
 
     /**

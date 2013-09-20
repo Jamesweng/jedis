@@ -131,9 +131,9 @@ public interface BinaryJedisCommands {
 
     Set<byte[]> zrevrange(byte[] key, long start, long end);
 
-    Set<Tuple> zrangeWithScores(byte[] key, long start, long end);
+    List<Tuple> zrangeWithScores(byte[] key, long start, long end);
 
-    Set<Tuple> zrevrangeWithScores(byte[] key, long start, long end);
+    List<Tuple> zrevrangeWithScores(byte[] key, long start, long end);
 
     Long zcard(byte[] key);
 
@@ -164,27 +164,27 @@ public interface BinaryJedisCommands {
     Set<byte[]> zrevrangeByScore(byte[] key, double max, double min,
             int offset, int count);
 
-    Set<Tuple> zrangeByScoreWithScores(byte[] key, double min, double max);
+    List<Tuple> zrangeByScoreWithScores(byte[] key, double min, double max);
 
-    Set<Tuple> zrevrangeByScoreWithScores(byte[] key, double max, double min);
+    List<Tuple> zrevrangeByScoreWithScores(byte[] key, double max, double min);
 
-    Set<Tuple> zrangeByScoreWithScores(byte[] key, double min, double max,
+    List<Tuple> zrangeByScoreWithScores(byte[] key, double min, double max,
             int offset, int count);
     
     Set<byte[]> zrevrangeByScore(byte[] key, byte[] max, byte[] min,
             int offset, int count);
 
-    Set<Tuple> zrangeByScoreWithScores(byte[] key, byte[] min, byte[] max);
+    List<Tuple> zrangeByScoreWithScores(byte[] key, byte[] min, byte[] max);
     
-    Set<Tuple> zrevrangeByScoreWithScores(byte[] key, byte[] max, byte[] min);
+    List<Tuple> zrevrangeByScoreWithScores(byte[] key, byte[] max, byte[] min);
 
-    Set<Tuple> zrangeByScoreWithScores(byte[] key, byte[] min, byte[] max,
+    List<Tuple> zrangeByScoreWithScores(byte[] key, byte[] min, byte[] max,
             int offset, int count);
 
-    Set<Tuple> zrevrangeByScoreWithScores(byte[] key, double max, double min,
+    List<Tuple> zrevrangeByScoreWithScores(byte[] key, double max, double min,
             int offset, int count);
     
-    Set<Tuple> zrevrangeByScoreWithScores(byte[] key, byte[] max, byte[] min,
+    List<Tuple> zrevrangeByScoreWithScores(byte[] key, byte[] max, byte[] min,
             int offset, int count);
 
     Long zremrangeByRank(byte[] key, long start, long end);

@@ -361,12 +361,12 @@ public class ShardedJedis extends BinaryShardedJedis implements JedisCommands {
 	return j.zrevrange(key, start, end);
     }
 
-    public Set<Tuple> zrangeWithScores(String key, long start, long end) {
+    public List<Tuple> zrangeWithScores(String key, long start, long end) {
 	Jedis j = getShard(key);
 	return j.zrangeWithScores(key, start, end);
     }
 
-    public Set<Tuple> zrevrangeWithScores(String key, long start, long end) {
+    public List<Tuple> zrevrangeWithScores(String key, long start, long end) {
 	Jedis j = getShard(key);
 	return j.zrevrangeWithScores(key, start, end);
     }
@@ -423,24 +423,24 @@ public class ShardedJedis extends BinaryShardedJedis implements JedisCommands {
 	return j.zrevrangeByScore(key, max, min, offset, count);
     }
 
-    public Set<Tuple> zrangeByScoreWithScores(String key, double min, double max) {
+    public List<Tuple> zrangeByScoreWithScores(String key, double min, double max) {
 	Jedis j = getShard(key);
 	return j.zrangeByScoreWithScores(key, min, max);
     }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(String key, double max,
+    public List<Tuple> zrevrangeByScoreWithScores(String key, double max,
 	    double min) {
 	Jedis j = getShard(key);
 	return j.zrevrangeByScoreWithScores(key, max, min);
     }
 
-    public Set<Tuple> zrangeByScoreWithScores(String key, double min,
+    public List<Tuple> zrangeByScoreWithScores(String key, double min,
 	    double max, int offset, int count) {
 	Jedis j = getShard(key);
 	return j.zrangeByScoreWithScores(key, min, max, offset, count);
     }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(String key, double max,
+    public List<Tuple> zrevrangeByScoreWithScores(String key, double max,
 	    double min, int offset, int count) {
 	Jedis j = getShard(key);
 	return j.zrevrangeByScoreWithScores(key, max, min, offset, count);
@@ -468,24 +468,24 @@ public class ShardedJedis extends BinaryShardedJedis implements JedisCommands {
 	return j.zrevrangeByScore(key, max, min, offset, count);
     }
 
-    public Set<Tuple> zrangeByScoreWithScores(String key, String min, String max) {
+    public List<Tuple> zrangeByScoreWithScores(String key, String min, String max) {
 	Jedis j = getShard(key);
 	return j.zrangeByScoreWithScores(key, min, max);
     }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(String key, String max,
+    public List<Tuple> zrevrangeByScoreWithScores(String key, String max,
 	    String min) {
 	Jedis j = getShard(key);
 	return j.zrevrangeByScoreWithScores(key, max, min);
     }
 
-    public Set<Tuple> zrangeByScoreWithScores(String key, String min,
+    public List<Tuple> zrangeByScoreWithScores(String key, String min,
 	    String max, int offset, int count) {
 	Jedis j = getShard(key);
 	return j.zrangeByScoreWithScores(key, min, max, offset, count);
     }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(String key, String max,
+    public List<Tuple> zrevrangeByScoreWithScores(String key, String max,
 	    String min, int offset, int count) {
 	Jedis j = getShard(key);
 	return j.zrevrangeByScoreWithScores(key, max, min, offset, count);

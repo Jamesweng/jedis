@@ -331,12 +331,12 @@ public class BinaryShardedJedis extends Sharded<Jedis, JedisShardInfo>
 	return j.zrevrange(key, start, end);
     }
 
-    public Set<Tuple> zrangeWithScores(byte[] key, long start, long end) {
+    public List<Tuple> zrangeWithScores(byte[] key, long start, long end) {
 	Jedis j = getShard(key);
 	return j.zrangeWithScores(key, start, end);
     }
 
-    public Set<Tuple> zrevrangeWithScores(byte[] key, long start, long end) {
+    public List<Tuple> zrevrangeWithScores(byte[] key, long start, long end) {
 	Jedis j = getShard(key);
 	return j.zrevrangeWithScores(key, start, end);
     }
@@ -382,12 +382,12 @@ public class BinaryShardedJedis extends Sharded<Jedis, JedisShardInfo>
 	return j.zrangeByScore(key, min, max, offset, count);
     }
 
-    public Set<Tuple> zrangeByScoreWithScores(byte[] key, double min, double max) {
+    public List<Tuple> zrangeByScoreWithScores(byte[] key, double min, double max) {
 	Jedis j = getShard(key);
 	return j.zrangeByScoreWithScores(key, min, max);
     }
 
-    public Set<Tuple> zrangeByScoreWithScores(byte[] key, double min,
+    public List<Tuple> zrangeByScoreWithScores(byte[] key, double min,
 	    double max, int offset, int count) {
 	Jedis j = getShard(key);
 	return j.zrangeByScoreWithScores(key, min, max, offset, count);
@@ -398,12 +398,12 @@ public class BinaryShardedJedis extends Sharded<Jedis, JedisShardInfo>
         return j.zrangeByScore(key, min, max);
     }
 
-    public Set<Tuple> zrangeByScoreWithScores(byte[] key, byte[] min, byte[] max) {
+    public List<Tuple> zrangeByScoreWithScores(byte[] key, byte[] min, byte[] max) {
 	Jedis j = getShard(key);
 	return j.zrangeByScoreWithScores(key, min, max);
     }
 
-    public Set<Tuple> zrangeByScoreWithScores(byte[] key, byte[] min,
+    public List<Tuple> zrangeByScoreWithScores(byte[] key, byte[] min,
     		byte[] max, int offset, int count) {
 	Jedis j = getShard(key);
 	return j.zrangeByScoreWithScores(key, min, max, offset, count);
@@ -425,13 +425,13 @@ public class BinaryShardedJedis extends Sharded<Jedis, JedisShardInfo>
 	return j.zrevrangeByScore(key, max, min, offset, count);
     }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(byte[] key, double max,
+    public List<Tuple> zrevrangeByScoreWithScores(byte[] key, double max,
 	    double min) {
 	Jedis j = getShard(key);
 	return j.zrevrangeByScoreWithScores(key, max, min);
     }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(byte[] key, double max,
+    public List<Tuple> zrevrangeByScoreWithScores(byte[] key, double max,
 	    double min, int offset, int count) {
 	Jedis j = getShard(key);
 	return j.zrevrangeByScoreWithScores(key, max, min, offset, count);
@@ -448,13 +448,13 @@ public class BinaryShardedJedis extends Sharded<Jedis, JedisShardInfo>
 	return j.zrevrangeByScore(key, max, min, offset, count);
     }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(byte[] key, byte[] max,
+    public List<Tuple> zrevrangeByScoreWithScores(byte[] key, byte[] max,
     		byte[] min) {
 	Jedis j = getShard(key);
 	return j.zrevrangeByScoreWithScores(key, max, min);
     }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(byte[] key, byte[] max,
+    public List<Tuple> zrevrangeByScoreWithScores(byte[] key, byte[] max,
     		byte[] min, int offset, int count) {
 	Jedis j = getShard(key);
 	return j.zrevrangeByScoreWithScores(key, max, min, offset, count);

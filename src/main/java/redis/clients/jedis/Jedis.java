@@ -1532,20 +1532,20 @@ public class Jedis extends BinaryJedis implements JedisCommands, MultiKeyCommand
 	return new LinkedHashSet<String>(members);
     }
 
-    public Set<Tuple> zrangeWithScores(final String key, final long start,
+    public List<Tuple> zrangeWithScores(final String key, final long start,
 	    final long end) {
 	checkIsInMulti();
 	client.zrangeWithScores(key, start, end);
-	Set<Tuple> set = getTupledSet();
-	return set;
+	List<Tuple> list = getTupledList();
+	return list;
     }
 
-    public Set<Tuple> zrevrangeWithScores(final String key, final long start,
+    public List<Tuple> zrevrangeWithScores(final String key, final long start,
 	    final long end) {
 	checkIsInMulti();
 	client.zrevrangeWithScores(key, start, end);
-	Set<Tuple> set = getTupledSet();
-	return set;
+	List<Tuple> list = getTupledList();
+	return list;
     }
 
     /**
@@ -2156,20 +2156,20 @@ public class Jedis extends BinaryJedis implements JedisCommands, MultiKeyCommand
      * @return Multi bulk reply specifically a list of elements in the specified
      *         score range.
      */
-    public Set<Tuple> zrangeByScoreWithScores(final String key,
+    public List<Tuple> zrangeByScoreWithScores(final String key,
 	    final double min, final double max) {
 	checkIsInMulti();
 	client.zrangeByScoreWithScores(key, min, max);
-	Set<Tuple> set = getTupledSet();
-	return set;
+	List<Tuple> list = getTupledList();
+	return list;
     }
 
-    public Set<Tuple> zrangeByScoreWithScores(final String key,
+    public List<Tuple> zrangeByScoreWithScores(final String key,
 	    final String min, final String max) {
 	checkIsInMulti();
 	client.zrangeByScoreWithScores(key, min, max);
-	Set<Tuple> set = getTupledSet();
-	return set;
+	List<Tuple> list = getTupledList();
+	return list;
     }
 
     /**
@@ -2228,34 +2228,35 @@ public class Jedis extends BinaryJedis implements JedisCommands, MultiKeyCommand
      * @return Multi bulk reply specifically a list of elements in the specified
      *         score range.
      */
-    public Set<Tuple> zrangeByScoreWithScores(final String key,
+    public List<Tuple> zrangeByScoreWithScores(final String key,
 	    final double min, final double max, final int offset,
 	    final int count) {
 	checkIsInMulti();
 	client.zrangeByScoreWithScores(key, min, max, offset, count);
-	Set<Tuple> set = getTupledSet();
-	return set;
+	List<Tuple> list = getTupledList();
+	return list;
     }
 
-    public Set<Tuple> zrangeByScoreWithScores(final String key,
+    public List<Tuple> zrangeByScoreWithScores(final String key,
 	    final String min, final String max, final int offset,
 	    final int count) {
 	checkIsInMulti();
 	client.zrangeByScoreWithScores(key, min, max, offset, count);
-	Set<Tuple> set = getTupledSet();
-	return set;
+	List<Tuple> list = getTupledList();
+	return list;
     }
 
-    private Set<Tuple> getTupledSet() {
-	checkIsInMulti();
-	List<String> membersWithScores = client.getMultiBulkReply();
-	Set<Tuple> set = new LinkedHashSet<Tuple>();
-	Iterator<String> iterator = membersWithScores.iterator();
-	while (iterator.hasNext()) {
-	    set.add(new Tuple(iterator.next(), Double.valueOf(iterator.next())));
+	private List<Tuple> getTupledList() {
+		checkIsInMulti();
+		List<String> membersWithScores = client.getMultiBulkReply();
+		List<Tuple> list = new ArrayList<Tuple>();
+		Iterator<String> iterator = membersWithScores.iterator();
+		while (iterator.hasNext()) {
+			list.add(new Tuple(iterator.next(), Double.parseDouble(iterator
+					.next())));
+		}
+		return list;
 	}
-	return set;
-    }
 
     public Set<String> zrevrangeByScore(final String key, final double max,
 	    final double min) {
@@ -2278,30 +2279,30 @@ public class Jedis extends BinaryJedis implements JedisCommands, MultiKeyCommand
 	return new LinkedHashSet<String>(client.getMultiBulkReply());
     }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(final String key,
+    public List<Tuple> zrevrangeByScoreWithScores(final String key,
 	    final double max, final double min) {
 	checkIsInMulti();
 	client.zrevrangeByScoreWithScores(key, max, min);
-	Set<Tuple> set = getTupledSet();
-	return set;
+	List<Tuple> list = getTupledList();
+	return list;
     }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(final String key,
+    public List<Tuple> zrevrangeByScoreWithScores(final String key,
 	    final double max, final double min, final int offset,
 	    final int count) {
 	checkIsInMulti();
 	client.zrevrangeByScoreWithScores(key, max, min, offset, count);
-	Set<Tuple> set = getTupledSet();
-	return set;
+	List<Tuple> list = getTupledList();
+	return list;
     }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(final String key,
+    public List<Tuple> zrevrangeByScoreWithScores(final String key,
 	    final String max, final String min, final int offset,
 	    final int count) {
 	checkIsInMulti();
 	client.zrevrangeByScoreWithScores(key, max, min, offset, count);
-	Set<Tuple> set = getTupledSet();
-	return set;
+	List<Tuple> list = getTupledList();
+	return list;
     }
 
     public Set<String> zrevrangeByScore(final String key, final String max,
@@ -2311,12 +2312,12 @@ public class Jedis extends BinaryJedis implements JedisCommands, MultiKeyCommand
 	return new LinkedHashSet<String>(client.getMultiBulkReply());
     }
 
-    public Set<Tuple> zrevrangeByScoreWithScores(final String key,
+    public List<Tuple> zrevrangeByScoreWithScores(final String key,
 	    final String max, final String min) {
 	checkIsInMulti();
 	client.zrevrangeByScoreWithScores(key, max, min);
-	Set<Tuple> set = getTupledSet();
-	return set;
+	List<Tuple> list = getTupledList();
+	return list;
     }
 
     /**

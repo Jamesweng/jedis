@@ -1,8 +1,15 @@
 package redis.clients.jedis;
 
-import redis.clients.util.SafeEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import java.util.*;
+import redis.clients.util.SafeEncoder;
 
 public class BuilderFactory {
     public static final Builder<Double> DOUBLE = new Builder<Double>() {
@@ -201,18 +208,18 @@ public class BuilderFactory {
 
     };
 
-    public static final Builder<Set<Tuple>> TUPLE_ZSET = new Builder<Set<Tuple>>() {
+    public static final Builder<List<Tuple>> TUPLE_ZSET = new Builder<List<Tuple>>() {
         @SuppressWarnings("unchecked")
-        public Set<Tuple> build(Object data) {
+        public List<Tuple> build(Object data) {
             if (null == data) {
                 return null;
             }
             List<byte[]> l = (List<byte[]>) data;
-            final Set<Tuple> result = new LinkedHashSet<Tuple>(l.size());
+            final List<Tuple> result = new ArrayList<Tuple>(l.size());
             Iterator<byte[]> iterator = l.iterator();
             while (iterator.hasNext()) {
                 result.add(new Tuple(SafeEncoder.encode(iterator.next()),
-                        Double.valueOf(SafeEncoder.encode(iterator.next()))));
+                        Double.parseDouble(SafeEncoder.encode(iterator.next()))));
             }
             return result;
         }
@@ -223,18 +230,18 @@ public class BuilderFactory {
 
     };
 
-    public static final Builder<Set<Tuple>> TUPLE_ZSET_BINARY = new Builder<Set<Tuple>>() {
+    public static final Builder<List<Tuple>> TUPLE_ZSET_BINARY = new Builder<List<Tuple>>() {
         @SuppressWarnings("unchecked")
-        public Set<Tuple> build(Object data) {
+        public List<Tuple> build(Object data) {
             if (null == data) {
                 return null;
             }
             List<byte[]> l = (List<byte[]>) data;
-            final Set<Tuple> result = new LinkedHashSet<Tuple>(l.size());
+            final List<Tuple> result = new ArrayList<Tuple>(l.size());
             Iterator<byte[]> iterator = l.iterator();
             while (iterator.hasNext()) {
                 result.add(new Tuple(iterator.next(), Double
-                        .valueOf(SafeEncoder.encode(iterator.next()))));
+                        .parseDouble(SafeEncoder.encode(iterator.next()))));
             }
 
             return result;
