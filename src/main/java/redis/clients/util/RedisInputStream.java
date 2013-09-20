@@ -47,6 +47,62 @@ public class RedisInputStream extends FilterInputStream {
 
         return buf[count++];
     }
+    
+    public int readIntAndSkipLine() throws NumberFormatException {
+        byte b;
+        byte c;
+        int value = 0;
+        boolean gotData = false;
+        boolean firstChar = true;
+        boolean nagative = false;
+
+        try {
+            while (true) {
+                if (count == limit) {
+                    fill();
+                }
+                if (limit == -1)
+                    break;
+
+                b = buf[count++];
+                gotData = true;
+                if (b == '\r') {
+                    if (count == limit) {
+                        fill();
+                    }
+
+                    if (limit == -1) {
+                        break;
+                    }
+
+                    c = buf[count++];
+                    if (c == '\n') {
+                        break;
+                    }
+                } else {
+                	if ('0' <= b && b <= '9') {
+                		value = value * 10 + (b - '0');
+                	} else if (b == '-' || b == '+') {
+                		if (firstChar) {
+                			nagative = (b == '-');
+                		} else {
+                			throw new NumberFormatException();
+                		}
+                	} else {
+                		throw new NumberFormatException();
+                	}
+                	firstChar = false;
+                }
+            }
+        } catch (IOException e) {
+            throw new JedisConnectionException(e);
+        }
+        if (!gotData) {
+            throw new JedisConnectionException(
+                    "It seems like server has closed the connection.");
+        }
+        return nagative ? -value : value;
+    }
 
     public String readLine() {
         int b;

@@ -93,7 +93,7 @@ public final class Protocol {
     }
 
     private static byte[] processBulkReply(final RedisInputStream is) {
-	int len = Integer.parseInt(is.readLine());
+	int len = is.readIntAndSkipLine();
 	if (len == -1) {
 	    return null;
 	}
@@ -119,7 +119,7 @@ public final class Protocol {
     }
 
     private static List<Object> processMultiBulkReply(final RedisInputStream is) {
-	int num = Integer.parseInt(is.readLine());
+	int num = is.readIntAndSkipLine();
 	if (num == -1) {
 	    return null;
 	}
